@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Per Te 💖</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#ffdde1,#ee9ca7);
+  font-family: 'Segoe UI', sans-serif;
+  overflow:hidden;
+}
+
+.container{
+  position:relative;
+  text-align:center;
+}
+
+.envelope{
+  position:relative;
+  width:300px;
+  height:200px;
+  background:#ff4d6d;
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+  transition: transform 0.6s;
+}
+
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:0;
+  height:0;
+  border-left:150px solid transparent;
+  border-right:150px solid transparent;
+  border-bottom:100px solid #ff758f;
+  transform-origin:top;
+  transition: transform 0.8s ease;
+}
+
+.letter{
+  position:absolute;
+  top:20px;
+  left:15px;
+  width:270px;
+  height:160px;
+  background:white;
+  border-radius:6px;
+  padding:20px;
+  box-sizing:border-box;
+  transform: translateY(100px);
+  transition: transform 1s ease;
+  opacity:0;
+}
+
+.message{
+  font-size:18px;
+  color:#d6336c;
+}
+
+.open .flap{
+  transform: rotateX(180deg);
+}
+
+.open .letter{
+  transform: translateY(-120px);
+  opacity:1;
+}
+
+.button{
+  margin-top:30px;
+  padding:10px 20px;
+  border:none;
+  background:#ff4d6d;
+  color:white;
+  font-size:16px;
+  border-radius:20px;
+  cursor:pointer;
+  display:none;
+  transition: 0.3s;
+}
+
+.button:hover{
+  background:#d6336c;
+}
+
+.open .button{
+  display:inline-block;
+}
+
+/* Cuori animati */
+.heart{
+  position:absolute;
+  font-size:20px;
+  animation: float 4s linear infinite;
+  color:#ff1e56;
+}
+
+@keyframes float{
+  0%{ transform: translateY(0) scale(1); opacity:1;}
+  100%{ transform: translateY(-600px) scale(1.5); opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="card">
+  <div class="envelope" onclick="openCard()">
+    <div class="flap"></div>
+    <div class="letter">
+      <div class="message">
+        Buon San Valentino ❤️<br><br>
+        Sei la mia persona speciale.<br>
+        Ogni giorno con te è magia ✨
+      </div>
+    </div>
+  </div>
+
+  <button class="button" onclick="showFinal()">Vuoi essere il mio San Valentino? 💍</button>
+</div>
+
+<audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+<script>
+
+function openCard(){
+  document.getElementById("card").classList.add("open");
+  document.getElementById("music").play();
+  createHearts();
+}
+
+function showFinal(){
+  alert("Ti amo 💖");
+}
+
+function createHearts(){
+  for(let i=0;i<20;i++){
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.top="100vh";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+      heart.remove();
+    },6000);
+  }
+}
+
+</script>
+
+</body>
+</html>
